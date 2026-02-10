@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galool 5-Star Luxury Experience</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Updated color scheme to yellow, black, and gold */
+    :root {
+      --color-primary: #041728;
+      --color-accent: #FFD700;
+      --color-yellow: #FFC107;
+      --color-dark-gold: #B8860B;
+      --color-cream: #FFF9E6;
+      --color-white: #ffffff;
+      --color-text: #1a1a1a;
+      --color-text-light: #4a4a4a;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: var(--color-cream);
+    }
+
+    /* Enhanced navigation with gold accents and smooth animations */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1.25rem 5%;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .navbar.scrolled {
+      padding: 1rem 5%;
+      box-shadow: 0 4px 30px rgba(255, 215, 0, 0.3);
+      background: rgba(0, 0, 0, 0.98);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Gold gradient logo with animation */
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.3); }
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    /* Enhanced nav links with gold hover effects */
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-white);
+      font-weight: 400;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-yellow));
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px var(--color-accent);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle span {
+      width: 25px;
+      height: 2px;
+      background: var(--color-accent);
+      transition: all 0.3s ease;
+    }
+
+    /* Enhanced hero with animated gradient overlay */
+    .hero {
+      height: 100vh;
+      background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(255, 193, 7, 0.3) 100%),
+        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1600&q=80') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--color-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+      animation: shine 4s ease-in-out infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 4.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 0%, var(--color-accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1), textGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes textGlow {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
+      50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 1px;
+      color: var(--color-white);
+      font-weight: 300;
+      animation: fadeInUp 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Animated gold button with smooth hover effects */
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--color-accent);
+      cursor: pointer;
+      font-size: 1rem;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      background: var(--color-primary);
+      color: var(--color-accent);
+      border: 2px solid var(--color-accent);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 6rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Black text with gold accents for section headers */
+    .section-header h2 {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-yellow));
+      animation: expandWidth 1s ease-out;
+    }
+
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 80px; }
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Gold subtitle with animation */
+    .subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--color-dark-gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Rooms Grid */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Enhanced room cards with black background and gold borders */
+    .room-card {
+      background: var(--color-primary);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid var(--color-dark-gold);
+      animation: slideUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .room-card:nth-child(1) { animation-delay: 0.1s; }
+    .room-card:nth-child(2) { animation-delay: 0.2s; }
+    .room-card:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .room-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      border-color: var(--color-accent);
+    }
+
+    .room-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.9);
+    }
+
+    .room-card:hover .room-image {
+      transform: scale(1.1);
+      filter: brightness(1);
+    }
+
+    .room-info {
+      padding: 2rem;
+    }
+
+    /* Gold text for room titles */
+    .room-info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-accent);
+      transition: all 0.3s ease;
+    }
+
+    .room-card:hover .room-info h3 {
+      transform: translateX(5px);
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Bright gold price with glow effect */
+    .room-price {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      animation: priceGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes priceGlow {
+      0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+      50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    }
+
+    .room-price span {
+      font-size: 0.95rem;
+      color: var(--color-yellow);
+      font-weight: 400;
+    }
+
+    .room-description {
+      color: var(--color-cream);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* Gold gradient button with smooth animations */
+    .book-button {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      color: var(--color-primary);
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.95rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .book-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .book-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Enhanced VIP section with yellow gradient background */
+    .vip-section {
+      background: linear-gradient(135deg, #000000 0%, #1a1a00 50%, #000000 100%);
+      padding: 6rem 5%;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vip-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 193, 7, 0.1) 0%, transparent 50%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Enhanced VIP cards with golden glow */
+    .vip-card {
+      position: relative;
+      border: 3px solid var(--color-accent);
+      background: var(--color-primary);
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+    }
+
+    .vip-card:hover {
+      box-shadow: 0 0 60px rgba(255, 215, 0, 0.8);
+      border-color: var(--color-yellow);
+    }
+
+    /* Animated VIP badge */
+    .vip-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      color: var(--color-primary);
+      padding: 0.5rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      z-index: 10;
+      animation: badgePulse 2s ease-in-out infinite;
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+    }
+
+    @keyframes badgePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.9);
+      }
+    }
+
+    .vip-card .room-info h3 {
+      color: var(--color-accent);
+    }
+
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Black service cards with gold accents and hover animations */
+    .service-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--color-primary);
+      border: 2px solid var(--color-dark-gold);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: fadeInScale 0.6s ease-out;
+      animation-fill-mode: both;
+      border-radius: 8px;
+    }
+
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .service-card:hover {
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+      transform: translateY(-10px) rotate(2deg);
+      border-color: var(--color-accent);
+      background: linear-gradient(135deg, #000000 0%, #1a1a00 100%);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+      display: inline-block;
+      filter: grayscale(0);
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.2) rotateY(360deg);
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    }
+
+    /* Gold service card titles */
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover h3 {
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+
+    .service-card p {
+      color: var(--color-cream);
+      line-height: 1.7;
+    }
+
+    /* Enhanced booking section with black and gold gradient */
+    .booking-section {
+      background: linear-gradient(135deg, #000000 0%, #2a2200 50%, #000000 100%);
+      color: var(--color-white);
+      padding: 6rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(255, 193, 7, 0.15) 0%, transparent 50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .booking-section .section-header h2,
+    .booking-section .section-header p {
+      color: var(--color-white);
+    }
+
+    .booking-section .section-header h2 {
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Enhanced booking form with smooth animations */
+    .booking-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 3rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--color-dark-gold);
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+      animation: formSlideIn 0.8s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes formSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 1.75rem;
+      animation: fadeInLeft 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .form-group:nth-child(1) { animation-delay: 0.1s; }
+    .form-group:nth-child(2) { animation-delay: 0.2s; }
+    .form-group:nth-child(3) { animation-delay: 0.3s; }
+    .form-group:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--color-accent);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: rgba(0, 0, 0, 0.5);
+      color: var(--color-white);
+      font-size: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: var(--font-sans);
+      border-radius: 4px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .form-group input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* Animated gold submit button */
+    .submit-button {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-yellow) 100%);
+      color: var(--color-primary);
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      font-size: 1.05rem;
+      margin-top: 1rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .submit-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.5s;
+    }
+
+    .submit-button:hover::before {
+      left: 100%;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.7);
+    }
+
+    /* Footer */
+    footer {
+      background: #000000;
+      color: var(--color-white);
+      text-align: center;
+      padding: 2.5rem 5%;
+      border-top: 2px solid var(--color-dark-gold);
+    }
+
+    footer p {
+      opacity: 0.7;
+      letter-spacing: 0.5px;
+      color: var(--color-yellow);
+    }
+
+    /* Enhanced fadeInUp animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Menu Section Styles */
+    .menu-category {
+      margin-bottom: 5rem;
+    }
+
+    .menu-category-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--color-primary);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .menu-category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-yellow));
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .menu-item {
+      background: var(--color-primary);
+      border: 2px solid var(--color-dark-gold);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: slideUp 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.5);
+      border-color: var(--color-accent);
+    }
+
+    .menu-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.9);
+    }
+
+    .menu-item:hover .menu-image {
+      transform: scale(1.15);
+      filter: brightness(1);
+    }
+
+    .menu-info {
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .menu-info h4 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .menu-item:hover .menu-info h4 {
+      transform: translateX(5px);
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    }
+
+    .menu-info p {
+      color: var(--color-cream);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .menu-price {
+      display: inline-block;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      animation: priceGlow 2s ease-in-out infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .mobile-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.98);
+        flex-direction: column;
+        gap: 0;
+        padding: 2rem 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        border-bottom: 2px solid var(--color-dark-gold);
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+      }
+
+      .nav-links li {
+        padding: 1rem 5%;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 5%;
+      }
+
+      .booking-form {
+        padding: 2rem 1.5rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .menu-category-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .cta-button {
+        padding: 0.85rem 2rem;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .menu-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .menu-image {
+        width: 100%;
+        height: 200px;
+      }
+
+      .menu-info {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">GALOOL HOTEL</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <!-- CHANGED: Fixed VIP Rooms navigation link -->
+        <li><a href="#vip-rooms">VIP Rooms</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#booking">Booking</a></li>
+      </ul>
+      <div class="mobile-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Galool 5 star Hotel</h1>
+      <p>You Welacome</p>
+      <a href="#booking" class="cta-button">Reserve Your Stay</a>
+    </div>
+  </section>
+
+  <!-- Regular Rooms Section -->
+  <section id="rooms">
+    <div class="section-header">
+      <div class="subtitle">Accommodations</div>
+      <h2>Our Rooms</h2>
+      <p>Each room is thoughtfully designed to provide the ultimate comfort and sophistication for discerning travelers</p>
+    </div>
+    <div class="rooms-grid">
+      <!-- Deluxe Room -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80" alt="Deluxe Room" class="room-image">
+        <div class="room-info">
+          <h3>Deluxe Room</h3>
+          <div class="room-price">$299 <span>/ night</span></div>
+          <p class="room-description">Elegant space with king bed, marble bathroom, city views, and premium amenities for ultimate comfort.</p>
+          <button class="book-button" onclick="bookRoom('Deluxe Room', 299)">View & Book</button>
+        </div>
+      </div>
+
+      <!-- Superior Suite -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Superior Suite" class="room-image">
+        <div class="room-info">
+          <h3>Superior Suite</h3>
+          <div class="room-price">$449 <span>/ night</span></div>
+          <p class="room-description">Spacious suite with separate living area, luxury furnishings, and breathtaking panoramic views.</p>
+          <button class="book-button" onclick="bookRoom('Superior Suite', 449)">View & Book</button>
+        </div>
+      </div>
+
+      <!-- Executive Room -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80" alt="Executive Room" class="room-image">
+        <div class="room-info">
+          <h3>Executive Room</h3>
+          <div class="room-price">$379 <span>/ night</span></div>
+          <p class="room-description">Modern design with workspace, premium bedding, and exclusive access to executive lounge.</p>
+          <button class="book-button" onclick="bookRoom('Executive Room', 379)">View & Book</button>
+        </div>
+      </div>
+
+      <!-- Classic Room -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80" alt="Classic Room" class="room-image">
+        <div class="room-info">
+          <h3>Classic Room</h3>
+          <div class="room-price">$249 <span>/ night</span></div>
+          <p class="room-description">Comfortable accommodations with queen bed, modern amenities, and elegant traditional design.</p>
+          <button class="book-button" onclick="bookRoom('Classic Room', 249)">View & Book</button>
+        </div>
+      </div>
+
+      <!-- Garden View Suite -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80" alt="Garden View Suite" class="room-image">
+        <div class="room-info">
+          <h3>Garden View Suite</h3>
+          <div class="room-price">$399 <span>/ night</span></div>
+          <p class="room-description">Tranquil retreat overlooking lush gardens, featuring private balcony and luxurious spa bathroom.</p>
+          <button class="book-button" onclick="bookRoom('Garden View Suite', 399)">View & Book</button>
+        </div>
+      </div>
+
+      <!-- Ambassador Suite -->
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?w=800&q=80" alt="Ambassador Suite" class="room-image">
+        <div class="room-info">
+          <h3>Ambassador Suite</h3>
+          <div class="room-price">$529 <span>/ night</span></div>
+          <p class="room-description">Sophisticated suite with separate bedroom, dining area, and executive workspace for business travelers.</p>
+          <button class="book-button" onclick="bookRoom('Ambassador Suite', 529)">View & Book</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP Rooms Section -->
+  <!-- CHANGED: Updated section ID to match navigation link -->
+  <div class="vip-section">
+    <section id="vip-rooms">
+      <div class="section-header">
+        <div class="subtitle">Exclusive</div>
+        <h2>VIP Rooms</h2>
+        <p>Indulge in our most luxurious accommodations, where every detail exceeds expectations</p>
+      </div>
+      <div class="rooms-grid">
+        <!-- Presidential Leaders Suite -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">EXCLUSIVE</div>
+          <img src="https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=800&q=80" alt="Presidential Leaders Suite" class="room-image">
+          <div class="room-info">
+            <h3>Presidential Leaders Suite</h3>
+            <div class="room-price">$2,499 <span>/ night</span></div>
+            <p class="room-description">Reserved exclusively for world leaders and high-profile dignitaries. Features 3 bedrooms, private security room, conference space, helipad access, and 24/7 diplomatic service.</p>
+            <button class="book-button" onclick="bookRoom('Presidential Leaders Suite', 2499)">View & Book</button>
+          </div>
+        </div>
+
+        <!-- Presidential Suite -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">VIP</div>
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Presidential Suite" class="room-image">
+          <div class="room-info">
+            <h3>Presidential Suite</h3>
+            <div class="room-price">$1,299 <span>/ night</span></div>
+            <p class="room-description">Ultimate luxury with multiple bedrooms, grand living space, private terrace, butler service, and exclusive amenities.</p>
+            <button class="book-button" onclick="bookRoom('Presidential Suite', 1299)">View & Book</button>
+          </div>
+        </div>
+
+        <!-- Royal Penthouse -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">VIP</div>
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Royal Penthouse" class="room-image">
+          <div class="room-info">
+            <h3>Royal Penthouse</h3>
+            <div class="room-price">$899 <span>/ night</span></div>
+            <p class="room-description">Top-floor elegance with panoramic city views, private dining room, spa bathroom, and dedicated concierge.</p>
+            <button class="book-button" onclick="bookRoom('Royal Penthouse', 899)">View & Book</button>
+          </div>
+        </div>
+
+        <!-- Imperial Suite -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">VIP</div>
+          <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800&q=80" alt="Imperial Suite" class="room-image">
+          <div class="room-info">
+            <h3>Imperial Suite</h3>
+            <div class="room-price">$749 <span>/ night</span></div>
+            <p class="room-description">Refined luxury with master bedroom, lounge area, premium amenities, and personalized service.</p>
+            <button class="book-button" onclick="bookRoom('Imperial Suite', 749)">View & Book</button>
+          </div>
+        </div>
+
+        <!-- Diplomat Suite -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">VIP</div>
+          <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80" alt="Diplomat Suite" class="room-image">
+          <div class="room-info">
+            <h3>Diplomat Suite</h3>
+            <p class="room-description">Designed for international dignitaries with meeting rooms, private office, secure communications, and exclusive privileges.</p>
+            <button class="book-button" onclick="bookRoom('Diplomat Suite', 999)">View & Book</button>
+          </div>
+        </div>
+
+        <!-- Chairman's Suite -->
+        <div class="room-card vip-card">
+          <div class="vip-badge">VIP</div>
+          <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80" alt="Chairman's Suite" class="room-image">
+          <div class="room-info">
+            <h3>Chairman's Suite</h3>
+            <div class="room-price">$1,499 <span>/ night</span></div>
+            <p class="room-description">Executive luxury with boardroom, private cinema, wine cellar, and personalized chef service for corporate leaders.</p>
+            <button class="book-button" onclick="bookRoom('Chairman\'s Suite', 1499)">View & Book</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="section-header">
+      <div class="subtitle">Amenities</div>
+      <h2>Hotel Services</h2>
+      <p>Discover the exceptional services designed to make your stay unforgettable</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Free Wi-Fi</h3>
+        <p>High-speed internet connectivity throughout the hotel for your convenience</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>3 Meals Included</h3>
+        <p>Gourmet breakfast, lunch, and dinner prepared by our award-winning chefs</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Pool & Spa</h3>
+        <p>Rooftop infinity pool and full-service spa for ultimate relaxation</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Airport Transfer</h3>
+        <p>Complimentary luxury car service to and from the airport</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Fitness Center</h3>
+        <p>24/7 state-of-the-art gym with personal training available</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Concierge Service</h3>
+        <p>24-hour dedicated concierge for all your needs and reservations</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <div class="section-header">
+      <div class="subtitle">Culinary Excellence</div>
+      <h2>Our Menu</h2>
+      <p>Experience world-class cuisine prepared by our award-winning chefs using the finest ingredients</p>
+    </div>
+
+    <!-- Appetizers -->
+    <div class="menu-category">
+      <h3 class="menu-category-title">Vegetable Foods</h3>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?w=400&q=80" alt="Lobster Bisque" class="menu-image">
+          <div class="menu-info">
+            <h4>Lobster Bisque</h4>
+            <p>Creamy lobster soup with cognac and fresh herbs</p>
+            <span class="menu-price">$28</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=400&q=80" alt="Foie Gras" class="menu-image">
+          <div class="menu-info">
+            <h4>Seared Foie Gras</h4>
+            <p>Pan-seared foie gras with caramelized fig compote</p>
+            <span class="menu-price">$45</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&q=80" alt="Oysters" class="menu-image">
+          <div class="menu-info">
+            <h4>Fresh Oysters</h4>
+            <p>Half dozen fresh oysters with mignonette sauce</p>
+            <span class="menu-price">$36</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400&q=80" alt="Truffle Arancini" class="menu-image">
+          <div class="menu-info">
+            <h4>Truffle Arancini</h4>
+            <p>Crispy risotto balls with black truffle and parmesan</p>
+            <span class="menu-price">$22</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Courses -->
+    <div class="menu-category">
+      <h3 class="menu-category-title">Main Meta </h3>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Wagyu Steak" class="menu-image">
+          <div class="menu-info">
+            <h4>Wagyu Beef Ribeye</h4>
+            <p>Japanese A5 wagyu with truffle mashed potatoes</p>
+            <span class="menu-price">$185</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1535140728325-a4d3707eee61?w=400&q=80" alt="Lobster" class="menu-image">
+          <div class="menu-info">
+            <h4>Grilled Lobster Tail</h4>
+            <p>Butter-poached lobster with lemon herb sauce</p>
+            <span class="menu-price">$95</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="Discover the secrets to a mouthwatering rack of….jpg" alt="Lamb Chops" class="menu-image">
+          <div class="menu-info">
+            <h4>Herb Crusted Lamb</h4>
+            <p>New Zealand lamb rack with rosemary jus</p>
+            <span class="menu-price">$78</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=400&q=80" alt="Sea Bass" class="menu-image">
+          <div class="menu-info">
+            <h4>Chilean Sea Bass</h4>
+            <p>Pan-seared sea bass with saffron risotto</p>
+            <span class="menu-price">$68</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&q=80" alt="Duck Breast" class="menu-image">
+          <div class="menu-info">
+            <h4>Duck Breast à l'Orange</h4>
+            <p>Roasted duck with orange glaze and wild rice</p>
+            <span class="menu-price">$72</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" alt="Vegetarian" class="menu-image">
+          <div class="menu-info">
+            <h4>Truffle Mushroom Risotto</h4>
+            <p>Creamy arborio rice with mixed mushrooms and truffle oil</p>
+            <span class="menu-price">$52</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div class="menu-category">
+      <h3 class="menu-category-title">Desserts</h3>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&q=80" alt="Chocolate Souffle" class="menu-image">
+          <div class="menu-info">
+            <h4>Dark Chocolate Soufflé</h4>
+            <p>Warm chocolate soufflé with vanilla ice cream</p>
+            <span class="menu-price">$24</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" alt="Tiramisu" class="menu-image">
+          <div class="menu-info">
+            <h4>Classic Tiramisu</h4>
+            <p>Italian mascarpone with espresso and cocoa</p>
+            <span class="menu-price">$18</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80" alt="Creme Brulee" class="menu-image">
+          <div class="menu-info">
+            <h4>Crème Brûlée</h4>
+            <p>Vanilla bean custard with caramelized sugar crust</p>
+            <span class="menu-price">$16</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&q=80" alt="Cheesecake" class="menu-image">
+          <div class="menu-info">
+            <h4>Gold Leaf Cheesecake</h4>
+            <p>New York style with berry compote and 24k gold</p>
+            <span class="menu-price">$32</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beverages - Non-Alcoholic -->
+    <div class="menu-category">
+      <h3 class="menu-category-title">Non-Alcoholic Beverages</h3>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <!-- CHANGED: Fixed duplicate image URL for fresh juice -->
+          <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80" alt="Fresh Juice" class="menu-image">
+          <div class="menu-info">
+            <h4>Fresh Pressed Juices</h4>
+            <p>Orange, grapefruit, or green detox blend</p>
+            <span class="menu-price">$12</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <!-- CHANGED: Updated coffee image URL -->
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Specialty Coffee" class="menu-image">
+          <div class="menu-info">
+            <h4>Specialty Coffee</h4>
+            <p>Espresso, cappuccino, or latte with premium beans</p>
+            <span class="menu-price">$8</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <!-- CHANGED: Fixed duplicate image URL for herbal tea -->
+          <img src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&q=80" alt="Herbal Tea" class="menu-image">
+          <div class="menu-info">
+            <h4>Premium Tea Selection</h4>
+            <p>English breakfast, Earl Grey, or herbal infusions</p>
+            <span class="menu-price">$7</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <!-- CHANGED: Fixed broken smoothie image URL -->
+          <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&q=80" alt="Smoothie" class="menu-image">
+          <div class="menu-info">
+            <h4>Tropical Smoothies</h4>
+            <p>Mango paradise or mixed berry with Greek yogurt</p>
+            <span class="menu-price">$14</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beverages - Alcoholic -->
+    <div class="menu-category">
+      <h3 class="menu-category-title">Fine Good Drinks</h3>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="Unknown.jpeg" alt="Champagne" class="menu-image">
+          <div class="menu-info">
+            <h4>Mojito</h4>
+            <p>Available</p>
+            <span class="menu-price">$450</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="Glow-in-the-Dark Cocktails_ Ultimate Party Drinks….jpg" alt="Red Wine" class="menu-image">
+          <div class="menu-info">
+            <h4>Manhattan</h4>
+            <p>Available</p>
+            <span class="menu-price">$850</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="French 75 cocktail recipe.jpg" alt="White Wine" class="menu-image">
+          <div class="menu-info">
+            <h4>Apple Juice</h4>
+            <p>Available</p>
+            <span class="menu-price">$180</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=400&q=80" alt="Whiskey" class="menu-image">
+          <div class="menu-info">
+            <h4>Cocktails</h4>
+            <p>Available</p>
+            <span class="menu-price">$295</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="Blue Lagoon Cocktail Recipe | How to Make the….jpg" alt="Cocktails" class="menu-image">
+          <div class="menu-info">
+            <h4>Signature Cocktails</h4>
+            <p>Available</p>
+            <span class="menu-price">$22</span>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80" alt="Cognac" class="menu-image">
+          <div class="menu-info">
+            <h4>Louis Cognac</h4>
+            <p>Available</p>
+            <span class="menu-price">$550</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking" class="booking-section">
+    <div class="section-header">
+      <div class="subtitle">Reserve</div>
+      <h2>Book Your Stay</h2>
+      <p>Complete the form below to reserve your luxury accommodation</p>
+    </div>
+    <form class="booking-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" placeholder="John Doe" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="roomType">Room Type</label>
+        <select id="roomType" required>
+          <option value="">Select a room</option>
+          <!-- Updated room options to include new rooms -->
+          <option value="Classic Room">Classic Room - $249/night</option>
+          <option value="Deluxe Room">Deluxe Room - $299/night</option>
+          <option value="Executive Room">Executive Room - $379/night</option>
+          <option value="Garden View Suite">Garden View Suite - $399/night</option>
+          <option value="Superior Suite">Superior Suite - $449/night</option>
+          <option value="Ambassador Suite">Ambassador Suite - $529/night</option>
+          <option value="Imperial Suite">Imperial Suite - $749/night (VIP)</option>
+          <option value="Royal Penthouse">Royal Penthouse - $899/night (VIP)</option>
+          <option value="Diplomat Suite">Diplomat Suite - $999/night (VIP)</option>
+          <option value="Presidential Suite">Presidential Suite - $1,299/night (VIP)</option>
+          <option value="Chairman's Suite">Chairman's Suite - $1,499/night (VIP)</option>
+          <option value="Presidential Leaders Suite">Presidential Leaders Suite - $2,499/night (EXCLUSIVE)</option>
+        </select>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="checkIn">Check-In</label>
+          <input type="date" id="checkIn" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="checkOut">Check-Out</label>
+          <input type="date" id="checkOut" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="guests">Number of Guests</label>
+        <select id="guests" required>
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="submit-button">Confirm Booking</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Galool 5-Star Hotel. All rights reserved. | Luxury Redefined</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          // Close mobile menu if open
+          document.querySelector('.nav-links').classList.remove('active');
+        }
+      });
+    });
+
+    // Book room function - auto-fills form and scrolls to booking
+    function bookRoom(roomName, price) {
+      const roomSelect = document.getElementById('roomType');
+      const options = roomSelect.options;
+      
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].value === roomName) {
+          roomSelect.selectedIndex = i;
+          break;
+        }
+      }
+      
+      // Smooth scroll to booking section
+      const bookingSection = document.getElementById('booking');
+      const offset = 80;
+      const targetPosition = bookingSection.offsetTop - offset;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    // Form submission handler
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        room: document.getElementById('roomType').value,
+        checkIn: document.getElementById('checkIn').value,
+        checkOut: document.getElementById('checkOut').value,
+        guests: document.getElementById('guests').value
+      };
+      
+      alert(`Thank you for your booking!\n\nRoom: ${formData.room}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\n\nWe will send a confirmation email to ${formData.email}`);
+      
+      // Reset form
+      event.target.reset();
+    }
+
+    // Set minimum date for check-in to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkIn').setAttribute('min', today);
+    document.getElementById('checkOut').setAttribute('min', today);
+
+    // Update check-out minimum date when check-in changes
+    document.getElementById('checkIn').addEventListener('change', function() {
+      const checkInDate = new Date(this.value);
+      checkInDate.setDate(checkInDate.getDate() + 1);
+      const minCheckOut = checkInDate.toISOString().split('T')[0];
+      document.getElementById('checkOut').setAttribute('min', minCheckOut);
+    });
+  </script>
+
+</body>
+</html>
