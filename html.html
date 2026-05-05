@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donor Admin System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-drops">
+    <div class="splash-drop" style="width:300px;height:300px;left:-80px;top:-80px;animation-delay:0s"></div>
+    <div class="splash-drop" style="width:200px;height:200px;right:-40px;bottom:60px;animation-delay:2s"></div>
+    <div class="splash-drop" style="width:120px;height:120px;right:200px;top:40px;animation-delay:1s;opacity:0.05"></div>
+  </div>
+  <div class="splash-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+  </div>
+  <div class="splash-title">BloodLink</div>
+  <div class="splash-sub">Blood Donation Management</div>
+  <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+  <div class="splash-pct" id="splash-pct">Loading system…</div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-bg-art"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      </div>
+      <span class="login-logo-text">BloodLink</span>
+    </div>
+    <div class="login-heading">Admin Login</div>
+    <div class="login-sub">Sign in to manage the donation system</div>
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input class="form-input" id="login-user" type="text" placeholder="admin" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" id="login-pass" type="password" placeholder="••••••••">
+    </div>
+    <div class="login-error" id="login-error">Invalid username or password. Try admin / admin123</div>
+    <button class="btn-login" onclick="doLogin()">Sign in</button>
+    <div class="login-hint">Demo credentials: admin / admin123</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      </div>
+      <span class="sidebar-logo-text">BloodLink</span>
+    </div>
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item active" onclick="navigate('dashboard',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-section-label">Management</div>
+    <div class="nav-item" onclick="navigate('donors',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Donors
+      <span class="nav-badge" id="badge-donors">0</span>
+    </div>
+    <div class="nav-item" onclick="navigate('hospitals',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Hospitals
+      <span class="nav-badge" id="badge-hospitals">0</span>
+    </div>
+    <div class="nav-item" onclick="navigate('requests',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Requests
+      <span class="nav-badge" id="badge-requests">0</span>
+    </div>
+    <div class="nav-section-label">System</div>
+    <div class="nav-item" onclick="navigate('settings',this)">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-user">
+      <div class="user-avatar">AD</div>
+      <div><div class="user-name">Admin</div><div class="user-role">Super Admin</div></div>
+      <div class="logout-btn" onclick="doLogout()" title="Logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="topbar-spacer"></div>
+      <input class="topbar-search" placeholder="Search…" id="global-search" oninput="globalSearch(this.value)">
+    </div>
+    <div class="content-area">
+
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="stat-num" id="stat-donors">0</div>
+            <div class="stat-label">Total Donors</div>
+            <div class="stat-delta delta-up" id="stat-donors-delta"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="stat-num" id="stat-hospitals">0</div>
+            <div class="stat-label">Hospitals</div>
+            <div class="stat-delta delta-up" id="stat-hospitals-delta"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+            <div class="stat-num" id="stat-requests">0</div>
+            <div class="stat-label">Active Requests</div>
+            <div class="stat-delta delta-red" id="stat-requests-delta"></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="stat-num" id="stat-completed">0</div>
+            <div class="stat-label">Completed Donations</div>
+            <div class="stat-delta delta-up" id="stat-completed-delta"></div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-card">
+            <div class="dash-card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Recent Donors
+            </div>
+            <div id="dash-recent-donors"></div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              Active Requests
+            </div>
+            <div id="dash-recent-requests"></div>
+          </div>
+          <div class="dash-card" style="grid-column:span 2">
+            <div class="dash-card-title">Blood Group Distribution</div>
+            <div id="dash-blood-bars"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DONORS PAGE -->
+      <div class="page" id="page-donors">
+        <div class="section-header">
+          <div class="section-title">Donor Registry</div>
+          <button class="btn btn-primary" onclick="openDonorModal()">+ Add Donor</button>
+        </div>
+        <div class="filter-bar">
+          <input class="search-input" placeholder="Search by name, location…" id="donor-search" oninput="renderDonors()">
+          <select class="filter-select" id="donor-blood-filter" onchange="renderDonors()">
+            <option value="">All Blood Groups</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+          <select class="filter-select" id="donor-avail-filter" onchange="renderDonors()">
+            <option value="">All Status</option>
+            <option value="Available">Available</option>
+            <option value="Busy">Busy</option>
+          </select>
+          <select class="filter-select" id="donor-gender-filter" onchange="renderDonors()">
+            <option value="">All Gender</option>
+            <option>Male</option><option>Female</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Name</th><th>Blood Group</th><th>Age</th>
+                <th>Gender</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="donors-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- HOSPITALS PAGE -->
+      <div class="page" id="page-hospitals">
+        <div class="section-header">
+          <div class="section-title">Hospitals</div>
+          <button class="btn btn-primary" onclick="openHospitalModal()">+ Add Hospital</button>
+        </div>
+        <div class="filter-bar">
+          <input class="search-input" placeholder="Search by name, city…" id="hospital-search" oninput="renderHospitals()">
+          <select class="filter-select" id="hospital-type-filter" onchange="renderHospitals()">
+            <option value="">All Types</option>
+            <option>Public</option><option>Private</option><option>NGO</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Hospital Name</th><th>Type</th><th>City</th><th>Contact Person</th><th>Phone</th><th>Email</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="hospitals-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- REQUESTS PAGE -->
+      <div class="page" id="page-requests">
+        <div class="section-header">
+          <div class="section-title">Blood Requests</div>
+          <button class="btn btn-primary" onclick="openRequestModal()">+ New Request</button>
+        </div>
+        <div class="filter-bar">
+          <input class="search-input" placeholder="Search by hospital, blood group…" id="request-search" oninput="renderRequests()">
+          <select class="filter-select" id="request-status-filter" onchange="renderRequests()">
+            <option value="">All Status</option>
+            <option>Pending</option><option>Approved</option><option>Completed</option><option>Urgent</option>
+          </select>
+          <select class="filter-select" id="request-blood-filter" onchange="renderRequests()">
+            <option value="">All Blood Groups</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Hospital</th><th>Blood Group</th><th>Units</th><th>Urgency</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="requests-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SETTINGS PAGE -->
+      <div class="page" id="page-settings">
+        <div class="settings-grid">
+          <div class="settings-nav">
+            <div class="settings-nav-item active" onclick="setSettingsTab('profile',this)">Profile</div>
+            <div class="settings-nav-item" onclick="setSettingsTab('notifications',this)">Notifications</div>
+            <div class="settings-nav-item" onclick="setSettingsTab('security',this)">Security</div>
+            <div class="settings-nav-item" onclick="setSettingsTab('system',this)">System</div>
+          </div>
+          <div class="settings-panel">
+            <div class="settings-section active" id="settings-profile">
+              <div class="settings-section-title">Admin Profile</div>
+              <div class="settings-section-sub">Update your account details</div>
+              <div class="modal-row" style="margin-bottom:16px">
+                <div class="modal-form-group"><label class="modal-label">First Name</label><input class="modal-input" value="System"></div>
+                <div class="modal-form-group"><label class="modal-label">Last Name</label><input class="modal-input" value="Admin"></div>
+              </div>
+              <div class="modal-form-group"><label class="modal-label">Email</label><input class="modal-input" value="admin@bloodlink.so"></div>
+              <div class="modal-form-group"><label class="modal-label">Organization</label><input class="modal-input" value="BloodLink Hargeisa"></div>
+              <div style="margin-top:20px"><button class="btn btn-primary" onclick="showToast('Profile updated successfully')">Save Changes</button></div>
+            </div>
+            <div class="settings-section" id="settings-notifications">
+              <div class="settings-section-title">Notifications</div>
+              <div class="settings-section-sub">Control which alerts you receive</div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">New blood requests</div><div class="settings-row-sub">Alert when a hospital submits a request</div></div>
+                <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Urgent requests</div><div class="settings-row-sub">Immediate alert for emergency requests</div></div>
+                <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">New donor registration</div><div class="settings-row-sub">When a new donor registers</div></div>
+                <div class="toggle" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Weekly summary</div><div class="settings-row-sub">Weekly digest of donations</div></div>
+                <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+              </div>
+            </div>
+            <div class="settings-section" id="settings-security">
+              <div class="settings-section-title">Security</div>
+              <div class="settings-section-sub">Change password and security settings</div>
+              <div class="modal-form-group"><label class="modal-label">Current Password</label><input class="modal-input" type="password" placeholder="••••••••"></div>
+              <div class="modal-form-group"><label class="modal-label">New Password</label><input class="modal-input" type="password" placeholder="••••••••"></div>
+              <div class="modal-form-group"><label class="modal-label">Confirm New Password</label><input class="modal-input" type="password" placeholder="••••••••"></div>
+              <div style="margin-top:20px"><button class="btn btn-primary" onclick="showToast('Password changed successfully')">Update Password</button></div>
+            </div>
+            <div class="settings-section" id="settings-system">
+              <div class="settings-section-title">System Settings</div>
+              <div class="settings-section-sub">Configure system behavior</div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Auto-match donors to requests</div><div class="settings-row-sub">Automatically suggest matching donors</div></div>
+                <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Allow hospital self-registration</div><div class="settings-row-sub">Hospitals can register without admin approval</div></div>
+                <div class="toggle" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div class="settings-row">
+                <div><div class="settings-row-label">Maintenance mode</div><div class="settings-row-sub">Lock system for maintenance</div></div>
+                <div class="toggle" onclick="this.classList.toggle('on')"></div>
+              </div>
+              <div style="margin-top:24px">
+                <button class="btn btn-danger" onclick="if(confirm('Reset all data?')) { DB.donors=[]; DB.hospitals=[]; DB.requests=[]; renderAll(); showToast('Data cleared','red'); }">Reset Demo Data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- DONOR MODAL -->
+<div class="modal-overlay" id="donor-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="donor-modal-title">Add Donor</div>
+      <div class="modal-close" onclick="closeModal('donor-modal')">✕</div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">First Name</label><input class="modal-input" id="d-fname" placeholder="Amira"></div>
+      <div class="modal-form-group"><label class="modal-label">Last Name</label><input class="modal-input" id="d-lname" placeholder="Mohamoud"></div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Blood Group</label>
+        <select class="modal-select" id="d-blood">
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+      <div class="modal-form-group"><label class="modal-label">Age</label><input class="modal-input" id="d-age" type="number" placeholder="25" min="18" max="65"></div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Gender</label>
+        <select class="modal-select" id="d-gender"><option>Male</option><option>Female</option></select>
+      </div>
+      <div class="modal-form-group"><label class="modal-label">Phone</label><input class="modal-input" id="d-phone" placeholder="+252 63 000 0000"></div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Location / District</label><input class="modal-input" id="d-location" placeholder="Hargeisa Central"></div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Last Donation Date</label><input class="modal-input" id="d-lastdon" type="date"></div>
+      <div class="modal-form-group"><label class="modal-label">Availability Status</label>
+        <select class="modal-select" id="d-avail"><option>Available</option><option>Busy</option></select>
+      </div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Notes</label><textarea class="modal-textarea" id="d-notes" placeholder="Any medical notes…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('donor-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDonor()">Save Donor</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOSPITAL MODAL -->
+<div class="modal-overlay" id="hospital-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="hospital-modal-title">Add Hospital</div>
+      <div class="modal-close" onclick="closeModal('hospital-modal')">✕</div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Hospital Name</label><input class="modal-input" id="h-name" placeholder="Hargeisa Group Hospital"></div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Type</label>
+        <select class="modal-select" id="h-type"><option>Public</option><option>Private</option><option>NGO</option></select>
+      </div>
+      <div class="modal-form-group"><label class="modal-label">City</label><input class="modal-input" id="h-city" placeholder="Hargeisa"></div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Contact Person</label><input class="modal-input" id="h-contact" placeholder="Dr. Ahmed"></div>
+      <div class="modal-form-group"><label class="modal-label">Phone</label><input class="modal-input" id="h-phone" placeholder="+252 63 000 0000"></div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Email</label><input class="modal-input" id="h-email" placeholder="info@hospital.so" type="email"></div>
+    <div class="modal-form-group"><label class="modal-label">Address</label><textarea class="modal-textarea" id="h-address" placeholder="Full address…"></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('hospital-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveHospital()">Save Hospital</button>
+    </div>
+  </div>
+</div>
+
+<!-- REQUEST MODAL -->
+<div class="modal-overlay" id="request-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="request-modal-title">New Blood Request</div>
+      <div class="modal-close" onclick="closeModal('request-modal')">✕</div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Hospital</label>
+      <select class="modal-select" id="r-hospital"><option>Select hospital…</option></select>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Blood Group</label>
+        <select class="modal-select" id="r-blood">
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+      <div class="modal-form-group"><label class="modal-label">Units Needed</label><input class="modal-input" id="r-units" type="number" min="1" value="2"></div>
+    </div>
+    <div class="modal-row">
+      <div class="modal-form-group"><label class="modal-label">Urgency</label>
+        <select class="modal-select" id="r-urgency"><option>Standard</option><option>Urgent</option><option>Emergency</option></select>
+      </div>
+      <div class="modal-form-group"><label class="modal-label">Status</label>
+        <select class="modal-select" id="r-status"><option>Pending</option><option>Approved</option><option>Completed</option></select>
+      </div>
+    </div>
+    <div class="modal-form-group"><label class="modal-label">Notes / Reason</label><textarea class="modal-textarea" id="r-notes" placeholder="Surgery, emergency, etc."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('request-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveRequest()">Save Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE MODAL -->
+<div class="modal-overlay confirm-modal" id="confirm-modal">
+  <div class="modal" style="width:360px">
+    <div class="modal-header">
+      <div class="modal-title">Confirm Delete</div>
+      <div class="modal-close" onclick="closeModal('confirm-modal')">✕</div>
+    </div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:24px" id="confirm-msg">Are you sure you want to delete this record?</p>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancel</button>
+      <button class="btn btn-primary" style="background:var(--red)" id="confirm-ok-btn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><div class="toast-dot" id="toast-dot"></div><span id="toast-msg"></span></div>
+
+<script src="javascript.js"></script>
+</body>
+</html>
